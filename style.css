@@ -139,3 +139,13 @@ tr:nth-child(even) {
     display: none;
     color: red;
 }
+
+iframe {
+    display: none;
+    justify-self: center;
+    position: fixed;
+    z-index: 100;
+    height: 100vh;
+    width: 100vw;
+    text-align: center;
+}

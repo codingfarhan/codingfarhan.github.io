@@ -11,7 +11,19 @@ function loadResult(event) {
 
     xhr.open("GET", "https://api.covid19api.com/summary", true);
 
+    // displaying the loading GIF for when the data is being loaded
+
+    xhr.onprogress = function() {
+        document.getElementsByTagName("iframe")[0].style.display = "flex";
+        document.getElementsByTagName("body")[0].style.display = "none";
+    };
+
+    // On loading the data:
+
     xhr.onload = function() {
+        document.getElementsByTagName("iframe")[0].style.display = "none";
+        document.getElementsByTagName("body")[0].style.display = "flex";
+
         if (inputValue == "") {
             return 0;
         }
@@ -67,36 +79,7 @@ function loadResult(event) {
                 console.log("We have already displayed this country's data!!");
                 return 0;
             }
-
-            /* for (var j = 0; j < inputValue.length; j++) {
-
-                      output += alreadyDisplayed[i][j];
-
-                  }
-
-                  if (output.toLowerCase() == inputValue.toLowerCase()) {
-                      console.log('We have already displayed this country\'s data!!')
-                      return 0;
-                  } */
         }
-
-        // First, we will erase the previous data rows.
-
-        /*            previousDataRows = document.getElementsByTagName('tr');
-    
-                        console.log(previousDataRows.length);
-    
-                        if (previousDataRows.length > 1) {
-    
-                            for (var i = 0; i < previousDataRows.length; i++) {
-    
-                                if (i > 1) {
-                                    previousDataRows[i].style.display = 'none';
-                                }
-                            }
-    
-                        }
-        */
 
         // if results of inputValue haven't been displayed yet, they will be displayed now.
 
@@ -154,20 +137,6 @@ function loadResult(event) {
         alreadyDisplayed.push(data.Country.toLowerCase());
 
         console.log(alreadyDisplayed);
-    }
-
-    function isSubSequence(str1, str2, m, n) {
-        // Base Cases
-        if (m == 0) return true;
-        if (n == 0) return false;
-
-        // If last characters of two strings
-        // are matching
-        if (str1[m - 1] == str2[n - 1])
-            return isSubSequence(str1, str2, m - 1, n - 1);
-
-        // If last characters are not matching
-        return isSubSequence(str1, str2, m, n - 1);
     }
 
     xhr.send();
