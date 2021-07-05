@@ -3,7 +3,7 @@ body {
     display: flex;
     margin: 0px;
     width: 100vw;
-    height: 100vh;
+    height: 200vh;
     overflow-x: hidden;
     flex-direction: column;
     /*  background-color: rgb(250, 250, 194);  */
@@ -76,6 +76,7 @@ h1 {
 }
 
 input {
+    display: flex;
     border-radius: 5px;
     font-size: xx-large;
     color: grey;
@@ -148,4 +149,70 @@ iframe {
     height: 100vh;
     width: 100vw;
     text-align: center;
+}
+
+@media all and (max-width: 1470px) {
+    button {
+        width: max-content;
+    }
+}
+
+@media all and (max-width: 905px) {
+    .input-container {
+        display: block;
+        text-align: center;
+    }
+    input {
+        display: inline-flex;
+        height: 40%;
+        width: 200px;
+    }
+    button {
+        display: inline-flex;
+        margin: 0%;
+        height: 50%;
+        width: 58px;
+    }
+    br {
+        display: block;
+    }
+}
+
+@media all and (max-width: 650px) {
+    /* Headers on the left side  */
+    th {
+        text-align: left;
+        display: inline-block;
+        /* float: left; */
+        width: 50%;
+    }
+    td {
+        text-align: right;
+        display: inline-block;
+        /* float: right; */
+        width: 50%;
+    }
+    /* Results data on the right side */
+    tr {
+        display: inline-block;
+        width: 50%;
+        height: 60%;
+        background-color: white;
+    }
+    tr td {
+        margin-bottom: 12%;
+        text-align: left;
+    }
+    .data-row {
+        display: inline-block;
+        width: 50%;
+        height: 60%;
+        background-color: white;
+    }
+    tr:nth-child(even) {
+        background-color: #ffffff;
+    }
+    #total-deaths {
+        margin-top: 8.5%;
+    }
 }

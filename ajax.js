@@ -52,6 +52,12 @@ function loadResult(event) {
 
                 matchFound = true;
 
+                if (document.getElementById("error-text").style.display == "block") {
+                    document.getElementById("error-text").style.display = "none";
+                    document.getElementsByTagName("input")[0].style.border =
+                        "1px solid orange";
+                }
+
                 displayData(dataItem, alreadyDisplayed, inputValue);
             } else {
                 continue;
@@ -84,6 +90,12 @@ function loadResult(event) {
         // if results of inputValue haven't been displayed yet, they will be displayed now.
 
         console.log("displaying data...wait...");
+
+        // erasing previous data
+
+        if (document.getElementsByClassName("data-row")[0] != null) {
+            document.getElementsByClassName("data-row")[0].style.display = "none";
+        }
 
         document.getElementById("table-container").style.display = "inline-flex";
 
@@ -133,6 +145,8 @@ function loadResult(event) {
         // adding row to the table:
 
         heading_row.insertAdjacentElement("afterend", new_table_row);
+
+        document.getElementsByClassName("data-row").style.display = "block";
 
         alreadyDisplayed.push(data.Country.toLowerCase());
 
