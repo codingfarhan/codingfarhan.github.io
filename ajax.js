@@ -9,7 +9,13 @@ function loadResult(event) {
 
     var xhr = new XMLHttpRequest();
 
-    xhr.open("GET", "https://api.covid19api.com/summary", true);
+    xhr.open(
+        "GET",
+        "https://corona.lmao.ninja/v2/countries?yesterday&sort",
+        true
+    );
+
+    // https://api.covid19api.com/summary
 
     // displaying the loading GIF for when the data is being loaded
 
@@ -33,22 +39,11 @@ function loadResult(event) {
 
         var matchFound = false;
 
-        for (var item in receivedData.Countries) {
-            var dataItem = receivedData.Countries[item];
+        for (var index in receivedData) {
+            let country = receivedData[index]["country"];
 
-            var input_length = inputValue.length;
-
-            // output = "";
-
-            // for (var i = 0; i < input_length; i++) {
-            //     output += dataItem.Country[i];
-            // }
-
-            if (
-                dataItem.Country.toLowerCase() == inputValue.toLowerCase()
-                //  || output.toLowerCase() == inputValue.toLowerCase()
-            ) {
-                console.log("Match Found! \n" + dataItem.Country);
+            if (country.toLowerCase() == inputValue.toLowerCase()) {
+                console.log("Match Found! \n" + country);
 
                 matchFound = true;
 
@@ -58,7 +53,7 @@ function loadResult(event) {
                         "1px solid orange";
                 }
 
-                displayData(dataItem, alreadyDisplayed, inputValue);
+                displayData(receivedData[index], alreadyDisplayed);
             } else {
                 continue;
             }
@@ -75,13 +70,13 @@ function loadResult(event) {
         }
     };
 
-    function displayData(data, alreadyDisplayed, inputValue) {
+    function displayData(data, alreadyDisplayed) {
         // checking if inputValue has already had it's results displayed or not
 
         output = "";
 
         for (var i = 0; i < alreadyDisplayed.length; i++) {
-            if (alreadyDisplayed[i] == data.Country.toLowerCase()) {
+            if (alreadyDisplayed[i] == data["country"].toLowerCase()) {
                 console.log("We have already displayed this country's data!!");
                 return 0;
             }
@@ -112,25 +107,25 @@ function loadResult(event) {
         // Getting all the necessary values from the JSON object.
 
         country_value = document.createElement("td");
-        country_value.innerText = data.Country;
+        country_value.innerText = data["country"];
 
         newCases = document.createElement("td");
-        newCases.innerText = data.NewConfirmed;
+        newCases.innerText = data["todayCases"];
 
         newDeaths = document.createElement("td");
-        newDeaths.innerText = data.NewDeaths;
+        newDeaths.innerText = data["todayDeaths"];
 
         newRecovered = document.createElement("td");
-        newRecovered.innerText = data.NewRecovered;
+        newRecovered.innerText = data["todayRecovered"];
 
         totalConfirmed = document.createElement("td");
-        totalConfirmed.innerText = data.TotalConfirmed;
+        totalConfirmed.innerText = data["cases"];
 
         totalDeaths = document.createElement("td");
-        totalDeaths.innerText = data.TotalDeaths;
+        totalDeaths.innerText = data["deaths"];
 
         totalRecovered = document.createElement("td");
-        totalRecovered.innerText = data.TotalRecovered;
+        totalRecovered.innerText = data["recovered"];
 
         // adding all the data values to the row:
 
@@ -158,19 +153,19 @@ function loadResult(event) {
 
             small_screen_element.innerHTML =
                 `<p class="headings">Country</p>` +
-                `<p class="data-values">${data.Country}</p>` +
+                `<p class="data-values">${data["country"]}</p>` +
                 `<p class="headings">New Confirmed Cases</p>` +
-                `<p class="data-values">${data.NewConfirmed}</p>` +
+                `<p class="data-values">${data["todayCases"]}</p>` +
                 `<p class="headings">New Deaths</p>` +
-                `<p class="data-values">${data.NewDeaths}</p>` +
+                `<p class="data-values">${data["todayDeaths"]}</p>` +
                 `<p class="headings">New Recovered Cases</p>` +
-                `<p class="data-values">${data.NewRecovered}</p>` +
+                `<p class="data-values">${data["todayRecovered"]}</p>` +
                 `<p class="headings">Total Confirmed Cases</p>` +
-                `<p class="data-values">${data.TotalConfirmed}</p>` +
+                `<p class="data-values">${data["cases"]}</p>` +
                 `<p class="headings">Total Deaths</p>` +
-                `<p class="data-values">${data.TotalDeaths}</p>` +
+                `<p class="data-values">${data["deaths"]}</p>` +
                 `<p class="headings">Total Recovered</p>` +
-                `<p class="data-values">${data.TotalRecovered}</p>` +
+                `<p class="data-values">${data["recovered"]}</p>` +
                 "<br" +
                 "<hr>";
 
