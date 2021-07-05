@@ -38,15 +38,15 @@ function loadResult(event) {
 
             var input_length = inputValue.length;
 
-            output = "";
+            // output = "";
 
-            for (var i = 0; i < input_length; i++) {
-                output += dataItem.Country[i];
-            }
+            // for (var i = 0; i < input_length; i++) {
+            //     output += dataItem.Country[i];
+            // }
 
             if (
-                dataItem.Country.toLowerCase() == inputValue.toLowerCase() ||
-                output.toLowerCase() == inputValue.toLowerCase()
+                dataItem.Country.toLowerCase() == inputValue.toLowerCase()
+                //  || output.toLowerCase() == inputValue.toLowerCase()
             ) {
                 console.log("Match Found! \n" + dataItem.Country);
 
@@ -146,7 +146,56 @@ function loadResult(event) {
 
         heading_row.insertAdjacentElement("afterend", new_table_row);
 
-        document.getElementsByClassName("data-row").style.display = "block";
+        document.getElementsByClassName("data-row")[0].style.display = "block";
+
+        if (screen.width <= 700) {
+            document.getElementById("table-container").style.display = "none";
+            // Creating an element to display only for small screens (width < 700px)
+
+            small_screen_element = document.getElementById("results-container");
+
+            small_screen_element.style.display = "flex";
+
+            small_screen_element.innerHTML =
+                `<p class="headings">Country</p>` +
+                `<p class="data-values">${data.Country}</p>` +
+                `<p class="headings">New Confirmed Cases</p>` +
+                `<p class="data-values">${data.NewConfirmed}</p>` +
+                `<p class="headings">New Deaths</p>` +
+                `<p class="data-values">${data.NewDeaths}</p>` +
+                `<p class="headings">New Recovered Cases</p>` +
+                `<p class="data-values">${data.NewRecovered}</p>` +
+                `<p class="headings">Total Confirmed Cases</p>` +
+                `<p class="data-values">${data.TotalConfirmed}</p>` +
+                `<p class="headings">Total Deaths</p>` +
+                `<p class="data-values">${data.TotalDeaths}</p>` +
+                `<p class="headings">Total Recovered</p>` +
+                `<p class="data-values">${data.TotalRecovered}</p>` +
+                "<br" +
+                "<hr>";
+
+            //         `<br><table><thead><tr><th>Country</th><th>New Confirmed Cases</th><th>New Deaths</th><th>New Recovered Cases</th><th>Total Confirmed Cases</th><th>Total Deaths</th><th>Total Recovered</th></tr></thead>` +
+            //         `<tbody>
+            //     <tr class="table-row">
+            //       <td class="data">${data.Country}</td>
+            //       <td class="data">${data.NewConfirmed}</td>
+            //       <td class="data">${data.NewDeaths}</td>
+            //       <td class="data>${data.NewRecovered}</td>
+            //       <td class="data">${data.TotalConfirmed}</td>
+            //       <td class="data">${data.TotalDeaths}</td>
+            //       <td class="data">${data.TotalRecovered}</td>
+            //     </tr>
+            //   </tbody>
+            // </table>`;
+
+            // `Country: \t ${data.Country} \n New Confirmed Cases: \t ${data.NewConfirmed} \n New Deaths: \t ${data.NewDeaths} \n New Recovered Cases: \t ${data.NewRecovered} \n Total Confirmed Cases: \t ${data.TotalConfirmed} \n Total Deaths: \t ${data.TotalDeaths} \n Total Recovered: \t ${data.TotalRecovered}`;
+
+            // small_screen_element.appendChild(covid_data);
+
+            // console.log(covid_data);
+        }
+
+        // pushing country name to the list of already displayed countries
 
         alreadyDisplayed.push(data.Country.toLowerCase());
 

@@ -151,6 +151,10 @@ iframe {
     text-align: center;
 }
 
+#results-container {
+    display: none;
+}
+
 @media all and (max-width: 1470px) {
     button {
         width: max-content;
@@ -178,41 +182,56 @@ iframe {
     }
 }
 
-@media all and (max-width: 650px) {
-    /* Headers on the left side  */
+@media all and (max-width: 700px) {
+    body {
+        width: 100%;
+        height: 100%;
+        overflow-x: hidden;
+    }
+    #results-container {
+        display: flex;
+        text-align: center;
+        flex-direction: column;
+        justify-items: center;
+        justify-content: center;
+        margin-left: 3.5%;
+        margin-top: 20%;
+        margin-bottom: 20%;
+    }
+    /* Removing desktop view tables from mobile screen  */
+    tr,
+    td,
     th {
-        text-align: left;
-        display: inline-block;
-        /* float: left; */
-        width: 50%;
+        display: none;
     }
-    td {
-        text-align: right;
-        display: inline-block;
-        /* float: right; */
-        width: 50%;
+    /* displaying the actual table  */
+    .headings {
+        display: inline-flex;
+        margin: 0%;
+        width: 90vw;
+        height: 100%;
+        background-color: rgb(218, 218, 218);
+        float: left;
+        text-align: center;
+        justify-content: center;
+        justify-self: center;
+        font-family: ‘Lato’, sans-serif;
+        font-weight: 200;
+        font-size: 1.2em;
     }
-    /* Results data on the right side */
-    tr {
-        display: inline-block;
-        width: 50%;
-        height: 60%;
-        background-color: white;
+    .data-values {
+        display: inline-flex;
+        margin: 0%;
+        width: 90vw;
+        float: right;
+        text-align: center;
+        justify-content: center;
+        justify-self: center;
+        font-family: ‘Lato’, sans-serif;
     }
-    tr td {
-        margin-bottom: 12%;
-        text-align: left;
-    }
-    .data-row {
-        display: inline-block;
-        width: 50%;
-        height: 60%;
-        background-color: white;
-    }
-    tr:nth-child(even) {
-        background-color: #ffffff;
-    }
-    #total-deaths {
-        margin-top: 8.5%;
+    hr {
+        display: block;
+        border: 1px solid grey;
+        width: 90%;
     }
 }
