@@ -78,8 +78,8 @@ h1 {
 input {
     display: flex;
     border-radius: 5px;
-    font-size: xx-large;
-    color: grey;
+    font-size: x-large;
+    color: rgb(0, 0, 0);
     height: 100%;
     width: 20%;
     border: 1px solid orange;
