@@ -85,6 +85,16 @@ input {
     border: 1px solid orange;
 }
 
+
+/* Dropdown */
+
+#suggestions {
+    display: none;
+    width: 20%;
+    height: max-content;
+    /* position: fixed; */
+}
+
 button {
     display: flex;
     align-items: center;

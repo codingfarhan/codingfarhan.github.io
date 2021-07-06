@@ -41,11 +41,14 @@
     <form class="input-main-container" method="POST">
         <p>Enter a Country</p>
         <div class="input-container">
-            <input type="text" id="inputElem">
+            <input type="text" id="inputElem" list="suggestions">
+            <!-- Dropdown list -->
             <br hidden>
             <button type="submit" id="btn"><b> Done</b></button>
         </div>
     </form>
+    <datalist name="suggestions" id="suggestions"></datalist>
+
     <small id="error-text"></small>
 
 
